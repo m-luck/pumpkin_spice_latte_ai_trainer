@@ -1,5 +1,7 @@
 # K Nearest Neighbors
-
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from numpy import array
 K = 3
 
 training = [
@@ -39,3 +41,20 @@ for i, tup in enumerate(res):
     knearest[cl] = knearest.get(cl, 0) + 1 
     if i+1 == K: break
 print(knearest)
+axs = array([datum[0] for datum in training if datum[3]=="a"])
+ays = array([datum[1] for datum in training if datum[3]=="a"]) 
+azs = array([datum[2] for datum in training if datum[3]=="a"]) 
+bxs = array([datum[0] for datum in training if datum[3]=="b"])
+bys = array([datum[1] for datum in training if datum[3]=="b"]) 
+bzs = array([datum[2] for datum in training if datum[3]=="b"]) 
+cxs = array([datum[0] for datum in training if datum[3]=="c"])
+cys = array([datum[1] for datum in training if datum[3]=="c"]) 
+czs = array([datum[2] for datum in training if datum[3]=="c"]) 
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(axs, ays, azs,c="red",s=50)
+ax.scatter(bxs, bys, bzs,c="blue",s=50)
+ax.scatter(cxs, cys, czs,c="orange",s=50)
+ax.scatter(array([2]), array([2]), array([2]),c="green",s=65)
+plt.show()
